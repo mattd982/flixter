@@ -1,1 +1,14 @@
 @import "bootstrap";
+
+.navbar {
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: 200;
+  box-shadow: 0px 1px 3px #2a2a2a;
+  background: image_url('dark-grey.png');
+}
+
+.navbar-inverse a.navbar-brand {
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: 100;
+  color: white;
+}
