@@ -113,7 +113,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.9.0)
-    excon (0.67.0)
+    excon (0.71.0)
     execjs (2.7.0)
     ffi (1.11.1)
     figaro (1.1.1)
