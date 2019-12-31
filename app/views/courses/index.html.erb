@@ -5,13 +5,16 @@
   <hr />
 
   <% @courses.each do |course| %>
-    <h2 class="text-center">
-      <%= link_to course.title, course_path(course) %>
-    </h2>
+    <div class ="row">
+      <h2 class="text-center">
+        <%= link_to course.title, course_path(course) %>
+      </h2>
+    </div>
     <br />
     <div class="row">
-    <div class="col-sm-8 col-12">
-      <%= course.description %>
+      <div class="col-sm-8 col-12">
+        <%= course.description %>
+      </div>
     </div>
     <div class="col-sm-4 col-12 text-center">
        <%= link_to 'More Details...', course_path(course), class: 'btn btn-primary btn-large' %>
