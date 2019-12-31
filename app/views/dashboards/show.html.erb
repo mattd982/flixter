@@ -7,7 +7,7 @@
       <%= link_to course.title, course_path(course) %>
     </h3>
     <br />
-    <%= image_tag course.image, class: 'img-fluid' %>
+    <%= image_tag @course.image_url, class: 'img-fluid' %>
     <br />
     <div class="row">
       <div class="col-12 col-sm-8">
