@@ -1,9 +1,10 @@
 <script>
   $(function() {
-       $('.new-lesson-button').click(function( event ) {
-        var lessonUrl = $( event.target).data('lesson-url');
-        $('#newLessonForm').attr('action', lessonUrl);
+     $('.new-lesson-button').click(function( event ) {
+      var lessonUrl = $( event.target).data('lesson-url');
+      $('#newLessonForm').attr('action', lessonUrl);
     });
+
     $('.lessons').sortable({
       update: function( event, ui ) {
         $.ajax({
@@ -33,7 +34,9 @@
 <br />
 <div class="booyah-box col-10 offset-1">
   <h1 class="text-center"><%= current_course.title %></h1>
-  <%= image_tag current_course.image, class: 'img-fluid' %>
+  <% if current_course.image %>
+    
+  <% end %>
 
   <div class="text-center">
     <!-- Button trigger modal -->
@@ -41,8 +44,8 @@
       Add a new section...
     </button>
   </div>
-  
-   <ul class="sections">
+
+  <ul class="sections">
     <% current_course.sections.rank(:row_order).each do |section| %>
       <li data-update-url="<%= instructor_section_path section %>" class="section-li">
         <div class="header float-left">
@@ -53,7 +56,7 @@
         <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
           New Lesson...
         </button>
-        
+
         <br class="clr" />
         <br class="clr" />
 
@@ -96,23 +99,20 @@
         <h4 class="modal-title" id="newSectionModalLabel">Add a new section</h4>
       </div>
       <%= simple_form_for @section, url: instructor_course_sections_path(current_course) do |f| %>
-      <div class="modal-body">
-      <%= simple_form_for @section, url: instructor_course_sections_path(current_course) do |f| %>
-        <%= f.input :title %>
-        <br />
-        <%= f.submit "Add a section", class: 'btn btn-primary' %>
-        <br />
-        <br />
+        <div class="modal-body">
+          <%= f.input :title %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add a section", class: 'btn btn-primary' %>
+        </div>
       <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= f.submit "Add a section", class: 'btn btn-primary' %>
-      </div>
-    <% end %>
     </div>
   </div>
 </div>
+
+
+
 
 
 
@@ -126,16 +126,16 @@
         </button>
         <h4 class="modal-title" id="newLessonModalLabel">Add a new lesson</h4>
       </div>
-      <form accept-charset="UTF-8" action="#" class="simple_form new_lesson" enctype="multipart/form-data" id="newLessonForm" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="authenticity_token" type="hidden" value="cWn+DdJbIjqZajnzD956Ox4jjPXsnn7178AzOldv0XI=" /></div
-      <div class="modal-body">
+      <%= simple_form_for @lesson, url: "#", html: {id: 'newLessonForm' } do |f| %>
+        <div class="modal-body">
           <%= f.input :title %>
           <%= f.input :subtitle %>
           <%= f.input :video %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
+        </div>
       <% end %>
     </div>
   </div>
